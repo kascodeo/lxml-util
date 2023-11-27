@@ -224,6 +224,12 @@ when namespaces = {'c16':'http://c16/ns'}
         path = self._resolve_xpath(path, namespaces)
         return self.find(path)
 
+    def rm(self):
+        """Removes the current element from its parent.
+        Limitation: it throws AttributeError when trying to remove root element
+        """
+        self.getparent().remove(self)
+
     def __getattr__(self, name, *args, **kwargs):
         """This special method is called when there is no attribute with name
         <name> in the element object. This method looks for a element as per

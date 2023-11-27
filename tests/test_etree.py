@@ -259,3 +259,12 @@ def test_elementbase__getattr__(e):
     assert e.c_externalData___c_autoUpdate is e_autoUpdate
 
     assert e.c_externalData_r_id__c_autoUpdate_val is e_autoUpdate
+
+
+def test_elementbase_rm(e):
+    a = e[0]
+    num = len(e[:])
+    assert a in e[:]
+    e[0].rm()
+    assert a not in e[:]
+    assert num - 1 == len(e[:])

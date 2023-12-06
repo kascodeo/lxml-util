@@ -34,6 +34,7 @@ dochtml:
 clean:
 	rm -rf "dist"
 	rm -rf .tox
+	rm -rf src/lxml_util.egg-info
 
 setup:
 	pip install -e .[docs,tests,dists]

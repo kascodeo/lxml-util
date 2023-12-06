@@ -390,8 +390,14 @@ when namespaces = {'c16':'http://c16/ns'}
             #-> './{http://cee/ns}chart//{http://cee/ns}axId[@val="505253232"]'
         """
         nsmap = self.nsmap
+
         if isinstance(namespaces, dict):
             nsmap.update(namespaces)
+
+        nsmap_ = {k: v for k, v in nsmap.items()}
+        if None in nsmap_.keys():
+            nsmap_.pop(None)
+
         lst_i = []
         for i in re.split('//', path):
             lst_j = []
@@ -405,7 +411,7 @@ when namespaces = {'c16':'http://c16/ns'}
                         attr = m[1]
                         remain = m[2]
                         try:
-                            attr = self.qn(attr, nsmap=nsmap)
+                            attr = self.qn(attr, nsmap=nsmap_)
                         except KeyError:
                             pass
                         remain = '[@{}{}'.format(attr, remain)

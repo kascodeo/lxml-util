@@ -237,6 +237,13 @@ def test_elementbase_findallqn_w_prefix_search_attribute(e):
     assert len(e.findallqn('.//c:axId[@val="505253232"]')) == 2
 
 
+def test_elementbase_findallqn_w_none_in_nsmap_wo_prefix_attrib(e_rels):
+    e = e_rels
+    assert len(e.findallqn('.//Relationship[@Id]')) == 3
+    assert len(e.findallqn('.//Relationship[@Id="rId2"]')) == 1
+    assert len(e.findallqn('.//Relationship[@Id="rId21"]')) == 0
+
+
 def test_elementbase__getattr__(e):
     e_extdata = e.findqn('./c:externalData')
     e_autoUpdate = e_extdata.findqn('./c:autoUpdate')
